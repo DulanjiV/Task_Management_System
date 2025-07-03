@@ -1,0 +1,44 @@
+.spacer {
+    flex: 1 1 auto;
+}
+
+.container {
+    padding: 20px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.table-container {
+    margin-top: 20px;
+}
+
+.mat-table {
+    width: 100%;
+}
+
+.status-badge {
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.status-todo {
+    background-color: #ffecb3;
+    color: #e65100;
+}
+
+.status-in_progress {
+    background-color: #e1f5fe;
+    color: #0277bd;
+}
+
+.status-done {
+    background-color: #e8f5e8;
+    color: #2e7d32;
+}
