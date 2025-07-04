@@ -13,6 +13,12 @@ import { AuthService } from '../../services/auth.service';
 import { Task } from '../../models/task.model';
 import { Employee } from '../../models/employee.model';
 import { TaskFormComponent } from '../task-form/task-form.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import { MatCardModule } from '@angular/material/card';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-task-list',
@@ -24,15 +30,26 @@ import { TaskFormComponent } from '../task-form/task-form.component';
     MatToolbarModule,
     MatDialogModule,
     MatIconModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule,
+    MatCardModule,
+    MatTooltipModule,
+    FormsModule,
   ],
   templateUrl: './task-list.component.html',
   styleUrl: './task-list.component.css'
 })
 export class TaskListComponent implements OnInit {
-  tasks: Task[] = [];
+  allTasks: Task[] = [];
+  filteredTasks: Task[] = [];
   employees: Employee[] = [];
   displayedColumns: string[] = ['title', 'description', 'status', 'dueDate', 'employee', 'actions'];
+
+  // Search properties
+  searchTitle: string = '';
+  searchStatus: string = '';
 
   constructor(
     private taskService: TaskService,
@@ -50,7 +67,10 @@ export class TaskListComponent implements OnInit {
 
   loadTasks() {
     this.taskService.getAllTasks().subscribe({
-      next: (tasks) => this.tasks = tasks,
+      next: (tasks) => {
+        this.allTasks = tasks;
+        this.applyFilters();
+      },
       error: (error) => this.snackBar.open('Failed to load tasks', 'Close', { duration: 5000 })
     });
   }
@@ -60,6 +80,29 @@ export class TaskListComponent implements OnInit {
       next: (employees) => this.employees = employees,
       error: (error) => console.error('Failed to load employees', error)
     });
+  }
+
+  onSearch() {
+    console.log('onSearch called with searchTitle:', this.searchTitle, 'searchStatus:', this.searchStatus);
+    this.applyFilters();
+  }
+
+  applyFilters() {
+    this.filteredTasks = this.allTasks.filter(task => {
+      const matchesTitle = !this.searchTitle ||
+        task.title.toLowerCase().includes(this.searchTitle.toLowerCase());
+        console.log('searchTitle', this.searchTitle, 'matchesTitle', matchesTitle);
+      const matchesStatus = !this.searchStatus ||
+        task.status === this.searchStatus;
+
+      return matchesTitle && matchesStatus;
+    });
+  }
+
+  clearSearch() {
+    this.searchTitle = '';
+    this.searchStatus = '';
+    this.applyFilters();
   }
 
   getEmployeeName(employeeId: number): string {
