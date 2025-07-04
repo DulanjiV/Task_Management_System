@@ -54,15 +54,15 @@ INSERT IGNORE INTO users (username, password) VALUES
 USE employee_db;
 INSERT IGNORE INTO employees (name, email, department) VALUES 
 ('Kamal Perera', 'kamal@gmail.com', 'Development'),
-('Sahan Bandara', 'sahan11@gmail.com', 'Design');
+('Sahan Bandara', 'sahan11@gmail.com', 'Design'),
+('Mahesha Silva', 'maheshasilva@gmail.com', 'Management');
 
 -- Insert sample tasks into task_db
 USE task_db;
 INSERT IGNORE INTO tasks (title, description, status, due_date, employee_id) VALUES 
 ('Setup Project', 'Initialize the project structure and dependencies', 'TODO', '2025-07-15', 1),
 ('Design UI Mockups', 'Create wireframes and mockups for the application', 'IN_PROGRESS', '2025-07-20', 2),
-('Write Unit Tests', 'Implement unit tests for core functionality', 'TODO', '2025-07-25', 3),
-('Project Planning', 'Create project timeline and milestones', 'DONE', '2025-07-10', 4);
+('Project Planning', 'Create project timeline and milestones', 'DONE', '2025-07-10', 3);
 ```
 **Note: Spring Boot will auto create the tables. Run insert queries after the first boot.**
 
