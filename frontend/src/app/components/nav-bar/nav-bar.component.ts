@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
-import {MatToolbarModule} from '@angular/material/toolbar';
-import { MatIconModule  } from '@angular/material/icon';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-nav-bar',
@@ -11,7 +12,8 @@ import { Router } from '@angular/router';
   imports: [
     MatButtonModule,
     MatToolbarModule,
-    MatIconModule
+    MatIconModule,
+    CommonModule
   ],
   templateUrl: './nav-bar.component.html',
   styleUrl: './nav-bar.component.css'
@@ -29,4 +31,8 @@ export class NavBarComponent implements OnInit {
     this.authService.logout();
     this.router.navigate(['/login']);
   }
+
+  isTasksPage(): boolean {
+  return this.router.url.includes('/tasks') && this.authService.isLoggedIn();
+}
 }

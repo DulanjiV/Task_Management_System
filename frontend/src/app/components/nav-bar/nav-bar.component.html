@@ -1,9 +1,12 @@
 <mat-toolbar color="primary">
     <span><a mat-icon-button>Task Management System</a></span>
     <span class="example-spacer"></span>
-    <button mat-button (click)="logout()">
+    <button mat-button 
+              (click)="logout()" 
+              *ngIf="isTasksPage()"
+              class="logout-button">
         <mat-icon>logout</mat-icon>
         Logout
-    </button>
+      </button>
 
 </mat-toolbar>
