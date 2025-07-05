@@ -30,7 +30,6 @@ export class UnauthorizedComponent implements OnInit {
     // Get the attempted URL from query parameters
     this.route.queryParams.subscribe(params => {
       this.attemptedUrl = params['attemptedUrl'] || '';
-      console.log('Unauthorized access attempted for:', this.attemptedUrl);
     });
   }
 

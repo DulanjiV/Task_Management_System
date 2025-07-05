@@ -12,6 +12,7 @@ import { TaskService } from '../../services/task.service';
 import { Employee } from '../../models/employee.model';
 import { Task } from '../../models/task.model';
 import { MatSnackBarModule, MatSnackBar } from '@angular/material/snack-bar';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-task-form',
@@ -26,7 +27,8 @@ import { MatSnackBarModule, MatSnackBar } from '@angular/material/snack-bar';
     MatSelectModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatIconModule
   ],
   templateUrl: './task-form.component.html',
   styleUrl: './task-form.component.css'

@@ -2,14 +2,14 @@
 
 <mat-dialog-content>
     <form>
-        <mat-form-field appearance="outline" class="full-width">
+        <mat-form-field appearance="outline" class="full-width" style="padding-top: 4px;">
             <mat-label>Title</mat-label>
             <input matInput [(ngModel)]="task.title" name="title" required>
         </mat-form-field>
 
         <mat-form-field appearance="outline" class="full-width">
             <mat-label>Description</mat-label>
-            <textarea matInput [(ngModel)]="task.description" name="description" rows="3"></textarea>
+            <textarea matInput [(ngModel)]="task.description" name="description" rows="3" required></textarea>
         </mat-form-field>
 
         <mat-form-field appearance="outline" class="full-width">
@@ -21,7 +21,7 @@
             </mat-select>
         </mat-form-field>
 
-        <mat-form-field appearance="fill" class="full-width">
+        <mat-form-field appearance="outline" class="full-width">
             <mat-label>Due Date</mat-label>
             <input matInput [matDatepicker]="picker" [(ngModel)]="dueDateObj" name="dueDate" required>
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
@@ -30,11 +30,18 @@
 
         <mat-form-field appearance="outline" class="full-width">
             <mat-label>Employee</mat-label>
-            <mat-select [(ngModel)]="task.employeeId" name="employeeId">
+            <mat-select [(ngModel)]="task.employeeId" name="employeeId" placeholder="Select employee">
+                <mat-option *ngIf="employees.length === 0" disabled>
+                    No employees found. Please add employees first.
+                </mat-option>
                 <mat-option *ngFor="let employee of employees" [value]="employee.id">
                     {{ employee.name }}
                 </mat-option>
             </mat-select>
+            <mat-hint *ngIf="employees.length === 0">
+                <mat-icon class="hint-icon">info</mat-icon>
+                You need to add employees before assigning tasks.
+            </mat-hint>
         </mat-form-field>
     </form>
 </mat-dialog-content>

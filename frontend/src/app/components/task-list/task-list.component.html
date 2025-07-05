@@ -81,5 +81,18 @@
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
         </table>
+
+        <!-- No Tasks Message -->
+        <div *ngIf="filteredTasks.length === 0" class="no-tasks-container">
+            <mat-card class="no-tasks-card">
+                <mat-card-content class="no-tasks-content">
+                    <mat-icon class="no-tasks-icon">assignment</mat-icon>
+                    <h3>No Tasks Found</h3>
+                    <ng-template #noTasksAtAll>
+                        <p>You don't have any tasks yet. Create a task to get started!</p>
+                    </ng-template>
+                </mat-card-content>
+            </mat-card>
+        </div>
     </div>
 </div>

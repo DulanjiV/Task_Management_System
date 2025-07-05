@@ -83,7 +83,6 @@ export class TaskListComponent implements OnInit {
   }
 
   onSearch() {
-    console.log('onSearch called with searchTitle:', this.searchTitle, 'searchStatus:', this.searchStatus);
     this.applyFilters();
   }
 
@@ -91,7 +90,6 @@ export class TaskListComponent implements OnInit {
     this.filteredTasks = this.allTasks.filter(task => {
       const matchesTitle = !this.searchTitle ||
         task.title.toLowerCase().includes(this.searchTitle.toLowerCase());
-        console.log('searchTitle', this.searchTitle, 'matchesTitle', matchesTitle);
       const matchesStatus = !this.searchStatus ||
         task.status === this.searchStatus;
 
@@ -107,7 +105,7 @@ export class TaskListComponent implements OnInit {
 
   getEmployeeName(employeeId: number): string {
     const employee = this.employees.find(e => e.id === employeeId);
-    return employee ? employee.name : 'Unknown';
+    return employee ? employee.name : 'Employee Not Found';
   }
 
   openTaskForm(task?: Task) {
